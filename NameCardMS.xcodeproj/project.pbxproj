@@ -1,0 +1,448 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5747DFF01ADE4CB2009D464C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5747DFEF1ADE4CB2009D464C /* main.m */; };
+		5747DFF31ADE4CB2009D464C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5747DFF21ADE4CB2009D464C /* AppDelegate.m */; };
+		5747DFF61ADE4CB2009D464C /* NameCardMS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5747DFF41ADE4CB2009D464C /* NameCardMS.xcdatamodeld */; };
+		5747DFF91ADE4CB2009D464C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5747DFF81ADE4CB2009D464C /* ViewController.m */; };
+		5747DFFC1ADE4CB2009D464C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5747DFFA1ADE4CB2009D464C /* Main.storyboard */; };
+		5747DFFE1ADE4CB2009D464C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5747DFFD1ADE4CB2009D464C /* Images.xcassets */; };
+		5747E0011ADE4CB2009D464C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5747DFFF1ADE4CB2009D464C /* LaunchScreen.xib */; };
+		5747E00D1ADE4CB2009D464C /* NameCardMSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5747E00C1ADE4CB2009D464C /* NameCardMSTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5747E0071ADE4CB2009D464C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5747DFE21ADE4CB2009D464C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5747DFE91ADE4CB2009D464C;
+			remoteInfo = NameCardMS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5747DFEA1ADE4CB2009D464C /* NameCardMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NameCardMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5747DFEE1ADE4CB2009D464C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5747DFEF1ADE4CB2009D464C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5747DFF11ADE4CB2009D464C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5747DFF21ADE4CB2009D464C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5747DFF51ADE4CB2009D464C /* NameCardMS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NameCardMS.xcdatamodel; sourceTree = "<group>"; };
+		5747DFF71ADE4CB2009D464C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5747DFF81ADE4CB2009D464C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5747DFFB1ADE4CB2009D464C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5747DFFD1ADE4CB2009D464C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5747E0001ADE4CB2009D464C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		5747E0061ADE4CB2009D464C /* NameCardMSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NameCardMSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5747E00B1ADE4CB2009D464C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5747E00C1ADE4CB2009D464C /* NameCardMSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NameCardMSTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5747DFE71ADE4CB2009D464C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5747E0031ADE4CB2009D464C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5747DFE11ADE4CB2009D464C = {
+			isa = PBXGroup;
+			children = (
+				5747DFEC1ADE4CB2009D464C /* NameCardMS */,
+				5747E0091ADE4CB2009D464C /* NameCardMSTests */,
+				5747DFEB1ADE4CB2009D464C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5747DFEB1ADE4CB2009D464C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5747DFEA1ADE4CB2009D464C /* NameCardMS.app */,
+				5747E0061ADE4CB2009D464C /* NameCardMSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5747DFEC1ADE4CB2009D464C /* NameCardMS */ = {
+			isa = PBXGroup;
+			children = (
+				5747DFF11ADE4CB2009D464C /* AppDelegate.h */,
+				5747DFF21ADE4CB2009D464C /* AppDelegate.m */,
+				5747DFF71ADE4CB2009D464C /* ViewController.h */,
+				5747DFF81ADE4CB2009D464C /* ViewController.m */,
+				5747DFFA1ADE4CB2009D464C /* Main.storyboard */,
+				5747DFFD1ADE4CB2009D464C /* Images.xcassets */,
+				5747DFFF1ADE4CB2009D464C /* LaunchScreen.xib */,
+				5747DFF41ADE4CB2009D464C /* NameCardMS.xcdatamodeld */,
+				5747DFED1ADE4CB2009D464C /* Supporting Files */,
+			);
+			path = NameCardMS;
+			sourceTree = "<group>";
+		};
+		5747DFED1ADE4CB2009D464C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5747DFEE1ADE4CB2009D464C /* Info.plist */,
+				5747DFEF1ADE4CB2009D464C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5747E0091ADE4CB2009D464C /* NameCardMSTests */ = {
+			isa = PBXGroup;
+			children = (
+				5747E00C1ADE4CB2009D464C /* NameCardMSTests.m */,
+				5747E00A1ADE4CB2009D464C /* Supporting Files */,
+			);
+			path = NameCardMSTests;
+			sourceTree = "<group>";
+		};
+		5747E00A1ADE4CB2009D464C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5747E00B1ADE4CB2009D464C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5747DFE91ADE4CB2009D464C /* NameCardMS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5747E0101ADE4CB2009D464C /* Build configuration list for PBXNativeTarget "NameCardMS" */;
+			buildPhases = (
+				5747DFE61ADE4CB2009D464C /* Sources */,
+				5747DFE71ADE4CB2009D464C /* Frameworks */,
+				5747DFE81ADE4CB2009D464C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NameCardMS;
+			productName = NameCardMS;
+			productReference = 5747DFEA1ADE4CB2009D464C /* NameCardMS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5747E0051ADE4CB2009D464C /* NameCardMSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5747E0131ADE4CB2009D464C /* Build configuration list for PBXNativeTarget "NameCardMSTests" */;
+			buildPhases = (
+				5747E0021ADE4CB2009D464C /* Sources */,
+				5747E0031ADE4CB2009D464C /* Frameworks */,
+				5747E0041ADE4CB2009D464C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5747E0081ADE4CB2009D464C /* PBXTargetDependency */,
+			);
+			name = NameCardMSTests;
+			productName = NameCardMSTests;
+			productReference = 5747E0061ADE4CB2009D464C /* NameCardMSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5747DFE21ADE4CB2009D464C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = lincwee;
+				TargetAttributes = {
+					5747DFE91ADE4CB2009D464C = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					5747E0051ADE4CB2009D464C = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 5747DFE91ADE4CB2009D464C;
+					};
+				};
+			};
+			buildConfigurationList = 5747DFE51ADE4CB2009D464C /* Build configuration list for PBXProject "NameCardMS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5747DFE11ADE4CB2009D464C;
+			productRefGroup = 5747DFEB1ADE4CB2009D464C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5747DFE91ADE4CB2009D464C /* NameCardMS */,
+				5747E0051ADE4CB2009D464C /* NameCardMSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5747DFE81ADE4CB2009D464C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5747DFFC1ADE4CB2009D464C /* Main.storyboard in Resources */,
+				5747E0011ADE4CB2009D464C /* LaunchScreen.xib in Resources */,
+				5747DFFE1ADE4CB2009D464C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5747E0041ADE4CB2009D464C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5747DFE61ADE4CB2009D464C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5747DFF31ADE4CB2009D464C /* AppDelegate.m in Sources */,
+				5747DFF01ADE4CB2009D464C /* main.m in Sources */,
+				5747DFF91ADE4CB2009D464C /* ViewController.m in Sources */,
+				5747DFF61ADE4CB2009D464C /* NameCardMS.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5747E0021ADE4CB2009D464C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5747E00D1ADE4CB2009D464C /* NameCardMSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5747E0081ADE4CB2009D464C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5747DFE91ADE4CB2009D464C /* NameCardMS */;
+			targetProxy = 5747E0071ADE4CB2009D464C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5747DFFA1ADE4CB2009D464C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5747DFFB1ADE4CB2009D464C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5747DFFF1ADE4CB2009D464C /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5747E0001ADE4CB2009D464C /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5747E00E1ADE4CB2009D464C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5747E00F1ADE4CB2009D464C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5747E0111ADE4CB2009D464C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NameCardMS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5747E0121ADE4CB2009D464C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NameCardMS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5747E0141ADE4CB2009D464C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = NameCardMSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NameCardMS.app/NameCardMS";
+			};
+			name = Debug;
+		};
+		5747E0151ADE4CB2009D464C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = NameCardMSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NameCardMS.app/NameCardMS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5747DFE51ADE4CB2009D464C /* Build configuration list for PBXProject "NameCardMS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5747E00E1ADE4CB2009D464C /* Debug */,
+				5747E00F1ADE4CB2009D464C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5747E0101ADE4CB2009D464C /* Build configuration list for PBXNativeTarget "NameCardMS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5747E0111ADE4CB2009D464C /* Debug */,
+				5747E0121ADE4CB2009D464C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5747E0131ADE4CB2009D464C /* Build configuration list for PBXNativeTarget "NameCardMSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5747E0141ADE4CB2009D464C /* Debug */,
+				5747E0151ADE4CB2009D464C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5747DFF41ADE4CB2009D464C /* NameCardMS.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5747DFF51ADE4CB2009D464C /* NameCardMS.xcdatamodel */,
+			);
+			currentVersion = 5747DFF51ADE4CB2009D464C /* NameCardMS.xcdatamodel */;
+			path = NameCardMS.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 5747DFE21ADE4CB2009D464C /* Project object */;
+}
