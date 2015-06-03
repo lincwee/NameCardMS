@@ -33,6 +33,7 @@
 - (void)viewDidLoad {
     // Do any additional setup after loading the view, typically from a nib.
     
+    NSLog(@"this is ver1.0.1");
     [super viewDidLoad];
     //self.view.backgroundColor = [UIColor colorWithRed:25.f/255.f green:25.f/255.f blue:112.f/255.f alpha:1.f];
     //self.view.backgroundColor = [self ColorRGBWithRED:160.f GREEN:216.f BLUE:223.f];
