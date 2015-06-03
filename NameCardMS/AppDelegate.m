@@ -7,6 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "LeftBackSideView.h"
+#import "RightBackSideView.h"
+#import "DetailInfoViewConteroller.h"
+
+
+#define MAIN_SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define MAIN_SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 @interface AppDelegate ()
 
@@ -17,6 +25,58 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    NSLog(@"[[UIScreen mainScreen] bounds x = %f, y = %f]",[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+
+    self.m_pNavViewController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
+    self.m_pNavViewController.navigationBar.barTintColor = SKY_BLUE;
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"back1" style:UIBarButtonItemStyleBordered target:nil action:nil];
+//    [self.m_pNavViewController.navigationItem setBackBarButtonItem:backItem];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(40, 40, 100, 20)];
+
+    self.slideViewController = [[SlideSideView alloc] initWithCenterViewController:self.m_pNavViewController];
+    
+    self.slideViewController.leftSideViewController = [[LeftBackSideView alloc] init];
+    
+    self.slideViewController.rightSideViewController = [[RightBackSideView alloc] init];
+    self.slideViewController.detailInfoViewController = [[DetailInfoViewConteroller alloc] init];
+    [self.window makeKeyAndVisible];
+    self.window.rootViewController = self.slideViewController;
+    //[self.window addSubview:self.slideViewController.view];
+    //self.window.rootViewController = nav;
+    
+    self.m_pRightOpsBTN = [[UIButton alloc] initWithFrame:CGRectMake(MAIN_SCREEN_WIDTH - OPS_BUTTON_TEXT_WIDTH, 30.f, OPS_BUTTON_TEXT_WIDTH, OPS_BUTTON_TEXT_HEIGHT)];
+    self.m_pRightOpsBTN.titleLabel.font = [UIFont systemFontOfSize:OPS_BUTTON_TEXT_FONT];
+    self.m_pRightOpsBTN.titleLabel.adjustsFontSizeToFitWidth = YES;
+    //rightOpsBTN.titleLabel.textAlignment = UITextAlignmentCenter;
+    //[rightOpsBTN.titleLabel setTextAlignment:UITextAlignmentCenter];
+    //rightOpsBTN.backgroundColor = [UIColor blackColor];
+    [self.m_pRightOpsBTN  setTitle:@"用户操作" forState:UIControlStateNormal];
+    [self.m_pRightOpsBTN setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.m_pNavViewController.view addSubview:self.m_pRightOpsBTN];
+    [self.m_pRightOpsBTN addTarget:self action:@selector(showRight) forControlEvents:UIControlEventTouchUpInside];
+    
+    //add left ops button
+    self.m_pLeftOpsBTN = [[UIButton alloc]initWithFrame:CGRectMake(OPS_BUTTON_TEXT_WIDTH - 65.f, 30.f, OPS_BUTTON_TEXT_WIDTH, OPS_BUTTON_TEXT_HEIGHT)];
+    self.m_pLeftOpsBTN.titleLabel.font = [UIFont systemFontOfSize:OPS_BUTTON_TEXT_FONT];
+    [self.m_pLeftOpsBTN setTitle:@"名片操作" forState:UIControlStateNormal];
+    [self.m_pLeftOpsBTN setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.m_pLeftOpsBTN.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.m_pLeftOpsBTN.titleLabel.textColor = [UIColor blueColor];
+    [self.m_pNavViewController.view addSubview:self.m_pLeftOpsBTN];
+    [self.m_pLeftOpsBTN addTarget:self action:@selector(showLeft) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.m_pAppNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.m_pNavViewController.view.center.x, 30.f, 120.f, OPS_BUTTON_TEXT_HEIGHT)];
+    self.m_pAppNameLabel.text = @"名片管理系统";
+    self.m_pAppNameLabel.center = CGPointMake(self.m_pNavViewController.view.bounds.size.width / 2, 45.f);
+    self.m_pAppNameLabel.textAlignment = UITextAlignmentCenter;
+    self.m_pAppNameLabel.adjustsFontSizeToFitWidth = YES;
+    self.m_pAppNameLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    [self.m_pNavViewController.view addSubview:self.m_pAppNameLabel];
+    
     return YES;
 }
 
@@ -42,6 +102,14 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+-(void)showLeft{
+    [((AppDelegate *)([UIApplication sharedApplication].delegate)).slideViewController showLeftSideFinish:nil];
+}
+
+-(void)showRight{
+    [((AppDelegate *)([UIApplication sharedApplication].delegate)).slideViewController showRightSideFinish:nil];
 }
 
 #pragma mark - Core Data stack
