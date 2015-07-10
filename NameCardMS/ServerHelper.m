@@ -14,6 +14,7 @@
 @end
 
 @implementation ServerHelper
+@synthesize serverDelegate;
 
 +(ServerHelper *)shareControl
 {
@@ -32,10 +33,21 @@
         [[ServerHelper shareControl] startGETConnection:URL];
     }
 }
+
++(void) setDelegate:(id)delegate
+{
+    [[ServerHelper shareControl] setDelegate:delegate];
+}
+
+-(void)setDelegate:(id)delegate{
+    self.serverDelegate = delegate;
+}
 -(void)startGETConnection:(NSString *)URL
 {
     NSURL *url = [NSURL URLWithString:URL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.timeoutInterval = 5.f;
     NSURLConnection *conn = [NSURLConnection connectionWithRequest:request delegate:self];
     
     [conn start];
@@ -116,13 +128,14 @@
 {
     NSString *output = [[NSString alloc] initWithData:m_pData encoding:NSUTF8StringEncoding];
     NSLog(@"%@", output);
-    
+    [serverDelegate didReceiveMsg];
     m_pData = nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    assert(error);
+    //assert(error);
+    [serverDelegate didNotReceiveMsg];
 }
 
 @end

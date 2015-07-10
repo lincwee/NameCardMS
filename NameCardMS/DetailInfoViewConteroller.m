@@ -115,6 +115,7 @@ m_pTitleLabel;
    
    //scrollview
    m_pScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0.f, 65.f, kScrollViewWidth, kScrollViewHeigh)];
+   [m_pScrollView setContentOffset:CGPointMake(0, 240.f) animated:YES];
    //m_pScrollView.backgroundColor = [UIColor redColor];
    m_pScrollView.delegate = self;
    m_pScrollView.contentSize = CGSizeMake(kScrollViewWidth, kScrollViewContentSizeHeigh);

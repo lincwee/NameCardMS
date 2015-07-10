@@ -29,7 +29,7 @@
 @end
 
 @implementation ViewController
-@synthesize m_pTableView, /*m_pAppNameLabel,*/ m_pRefreshFooter, m_pDataList, m_pLeftOpsBTN, m_pRightOpsBTN, m_pSqlmanager, m_pDataCorList, m_pDataCloudList, m_pDataCloudCorList;
+@synthesize m_pTableView, /*m_pAppNameLabel,*/ m_pRefreshFooter, m_pDataList, m_pLeftOpsBTN, m_pRightOpsBTN, m_pSqlmanager, m_pDataCorList, m_pDataCloudList, m_pDataCloudCorList, m_pNaviMenu, m_pProgressHUD;
 - (void)viewDidLoad {
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -42,14 +42,29 @@
     [m_pSqlmanager loadData];
     [self initView];
     [self initNavigationMenuView];
+    
+    //菊花转
+    m_pProgressHUD = [[MBProgressHUD alloc]initWithView:self.view];
+    [((AppDelegate *)([UIApplication sharedApplication].delegate)).window addSubview:m_pProgressHUD];
+    m_pProgressHUD.delegate = self;
+   	m_pProgressHUD.labelText = @"数据加载中...";
+    m_pProgressHUD.dimBackground = YES;
 
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [m_pSqlmanager loadPersonDataWithArray:m_pDataList];
-    [m_pSqlmanager loadCorDataWithArray:m_pDataCorList];
+//    [m_pDataList removeAllObjects];
+//    [m_pDataCorList removeAllObjects];
+//    [m_pSqlmanager loadPersonDataWithArray:m_pDataList];
+//    [m_pSqlmanager loadCorDataWithArray:m_pDataCorList];
+    if (m_pNaviMenu.getIndexNow == 0) {
+        [self didSelectLocalData];
+    }
+    else if(m_pNaviMenu.getIndexNow == 1){
+        [self didSelectCloudData];
+    }
     self.RootAppDelegate.m_pAppNameLabel.text = @"名片管理系统";
     self.RootAppDelegate.m_pAppNameLabel.hidden = YES;
     
@@ -71,6 +86,8 @@
 
     m_pDataList = [[NSMutableArray alloc]init];
     m_pDataCorList = [[NSMutableArray alloc]init];
+    m_pDataCloudList = [[NSMutableArray alloc]init];
+    m_pDataCloudCorList = [[NSMutableArray alloc]init];
     [m_pSqlmanager loadPersonDataWithArray:m_pDataList];
     [m_pSqlmanager loadCorDataWithArray:m_pDataCorList];
 //    NSArray *list = [NSArray arrayWithObjects:@"武汉",@"上海",@"北京",@"深圳",@"广州",@"重庆",@"香港",@"台海",@"天津", nil];
@@ -87,6 +104,19 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:nil action:nil];
     self.navigationItem.backBarButtonItem = backItem;
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    
+    //菊花转
+    m_pProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [((AppDelegate *)([UIApplication sharedApplication].delegate)).window addSubview:m_pProgressHUD];
+    //[self.view addSubview:m_pProgressHUD];
+    //[self.view insertSubview:m_pProgressHUD atIndex:999];
+    //m_pProgressHUD.mode = MBProgressHUDModeAnnularDeterminate;
+    
+    // Regiser for HUD callbacks so we can remove it from the window at the right time
+    m_pProgressHUD.delegate = self;
+    
+    // Show the HUD while the provided method executes in a new thread
+   	m_pProgressHUD.labelText = @"登录中...";
 }
 - (AppDelegate *) RootAppDelegate
 {
@@ -96,11 +126,11 @@
 -(void) initNavigationMenuView
 {
     CGRect frame = CGRectMake(0.0, 0.0, 200.0, self.navigationController.navigationBar.bounds.size.height);
-    SINavigationMenuView *menu = [[SINavigationMenuView alloc] initWithFrame:frame title:@"本地名片"];
-    [menu displayMenuInView:self.view];
-    menu.items = @[@"本地名片", @"云端名片"];
-    menu.delegate = self;
-    self.navigationItem.titleView = menu;
+    m_pNaviMenu = [[SINavigationMenuView alloc] initWithFrame:frame title:@"本地名片"];
+    [m_pNaviMenu displayMenuInView:self.view];
+    m_pNaviMenu.items = @[@"本地名片", @"云端名片"];
+    m_pNaviMenu.delegate = self;
+    self.navigationItem.titleView = m_pNaviMenu;
 }
 
 - (void)didSelectItemAtIndex:(NSUInteger)index
@@ -120,6 +150,17 @@
         default:
             break;
     }
+    [m_pProgressHUD showAnimated:YES whileExecutingBlock:^{
+        [self myTask];
+    } completionBlock:^{
+        //[m_pProgressHUD hide:YES];
+        [m_pTableView reloadData];
+    }];
+}
+
+-(void) myTask
+{
+    sleep(4);
 }
 -(void) didSelectLocalData
 {
@@ -135,7 +176,66 @@
     [m_pDataList removeAllObjects];
     [m_pDataCorList removeAllObjects];
     
+    NSString *sendMsg = [NSString stringWithFormat:@"http://192.168.1.100:8080/MavenJavaWebDemo/myservlet?Type=1"];
+    //@"http://192.168.1.103:8080/MavenJavaWebDemo/myservlet?username=zdw&password=admin"
+    [ServerHelper startGETConnection:sendMsg];
+    [ServerHelper setDelegate:self];
+}
+
+-(void) didReceiveMsg
+{
+    NSMutableData *data= [ServerHelper getGetData];
+    NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    //NSString *finalName = [output stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
+    //NSLog(@"%@",finalName);
+//    NSString * path = [[NSBundle mainBundle]pathForResource:@"Notes" ofType:@"json" ];
+//    NSData * jsonData = [[NSData alloc] initWithContentsOfFile:path];
+    
+    NSError * error ;
+    id jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    if (!jsonData || error) {
+        NSLog(@"JSON解析失败");
+    }
+    NSArray *px = [[NSMutableArray alloc]init];
+    px = [jsonData objectForKey:@"CloudData"];
+    NSString *fuck = [NSString stringWithFormat:@"%@", [px objectAtIndex:0]];
+    if(px)
+    {
+        for (int i = 0; i < [px count]; i++) {
+            PerClass *temp = [[PerClass alloc]init];
+            NSMutableDictionary * dict = [px objectAtIndex:i];
+            temp->perName = [dict objectForKey:PER_NAME];
+            temp->perMobile = [dict objectForKey:PER_MOBILE];
+            temp->perPosition = [dict objectForKey:PER_POSITION];
+            temp->perTel = [dict objectForKey:PER_TEL];
+            temp->perEmail = [dict objectForKey:PER_EMAIL];
+            [m_pDataList addObject:temp];
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            CorClass *temp1 = [[CorClass alloc]init];
+            temp1->corName = [userDefaults stringForKey:COR_NAME];
+            temp1->corAddress = [userDefaults stringForKey:COR_ADDRESS];
+            temp1->corFax = [userDefaults stringForKey:COR_FAX];
+            temp1->corTel = [userDefaults stringForKey:COR_TEL];
+            temp1->corInteroduce = [userDefaults stringForKey:COR_INTRODUCE];
+            [m_pDataCorList addObject:temp1];
+        }
+        
+    }
     [m_pTableView reloadData];
+    [m_pProgressHUD hide:YES];
+//    NSData *data1 = [output dataUsingEncoding:NSUTF8StringEncoding];
+//    NSError *pError;
+//    NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data1 options:NSJSONReadingMutableContainers error:&pError];
+//    NSArray *px = [jsonData objectForKey:@"CloudData"];
+//    NSString *fuck = [NSString stringWithFormat:@"%@", [px objectAtIndex:0]];
+    
+}
+
+-(void)didNotReceiveMsg
+{
+    NSLog(@"没有接受到数据");
+    [m_pProgressHUD hide:YES];
 }
 
 -(void) lalala
@@ -197,7 +297,9 @@
         PerClass *person = [m_pDataList objectAtIndex:[indexPath row]];
         CorClass *cor = [m_pDataCorList objectAtIndex:[indexPath row]];
         [cell setPersonName:person->perName Position:person->perPosition CorAddress:cor->corAddress];
-        [cell setAvatar:[NSString stringWithFormat:@"%@.png",person->PID]];
+        if ([m_pNaviMenu getIndexNow] == 0) {
+            [cell setAvatar:[NSString stringWithFormat:@"%@.png",person->PID]];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.tag = [indexPath row];
         //NSLog(@"%d", cell.tag);
@@ -282,7 +384,10 @@
     NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",person->PID]];   // 保存文件的名称
     UIImage *img = [UIImage imageWithContentsOfFile:filePath];
     NSData *imgData = UIImageJPEGRepresentation(img, 1.f);
-    [detailView setCardImageData:imgData];
+    //当在云端名片的时候，就不出现图片
+    if ([m_pNaviMenu getIndexNow]==0) {
+        [detailView setCardImageData:imgData];
+    }
     NSLog(@"-------length:%d--------",imgData.length);
     [detailView setPersonDate:person AndCordate:cor];
     self.RootAppDelegate.m_pLeftOpsBTN.hidden = YES;

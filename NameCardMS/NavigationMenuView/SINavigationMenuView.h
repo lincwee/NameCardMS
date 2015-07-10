@@ -16,11 +16,16 @@
 @end
 
 @interface SINavigationMenuView : UIView <SIMenuDelegate>
+{
+    NSInteger nowIndex;
+}
 
 @property (nonatomic, weak) id <SINavigationMenuDelegate> delegate;
 @property (nonatomic, strong) NSArray *items;
+@property NSInteger nowIndex;
 
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title;
 - (void)displayMenuInView:(UIView *)view;
+-(NSInteger) getIndexNow;
 
 @end

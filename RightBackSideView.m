@@ -10,20 +10,32 @@
 #import "AppDelegate.h"
 #import "ASIHTTPRequest.h"
 #import "DetailInfoViewConteroller.h"
-#import "ServerHelper.h"
 #import "LoginView.h"
 
 @implementation RightBackSideView
 
-@synthesize m_pUserView, m_pNameLabel, m_pPositionLabel, m_pCorAddressLabel, m_pUserDefaults, m_pLoginButton, m_pAccountLabel;
+@synthesize m_pUserView, m_pNameLabel, m_pPositionLabel, m_pCorAddressLabel, m_pUserDefaults, m_pLoginButton, m_pAccountLabel, m_pAccountText, m_pProgressHUD;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    m_pUserDefaults = [NSUserDefaults standardUserDefaults];
     [self initView];
     self.view.backgroundColor = [UIColor whiteColor];
     [self savaUserData];
     [self readUserData];
-    m_pUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    m_pProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [((AppDelegate *)([UIApplication sharedApplication].delegate)).window addSubview:m_pProgressHUD];
+    m_pProgressHUD.delegate = self;
+    m_pProgressHUD.labelText = @"登录中...";
+    m_pProgressHUD.dimBackground = YES;
+    
+//    [HUD showAnimated:YES whileExecutingBlock:^{
+//        sleep(3);
+//    } completionBlock:^{
+//        [HUD removeFromSuperview];
+//    }];
+    //[m_pProgressHUD show:YES];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -86,9 +98,10 @@
     
     m_pLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(20.f, 310.f, 90.f, 50.f)];
     m_pLoginButton.backgroundColor = [UIColor darkGrayColor];
-    [m_pLoginButton setTitle:@"已登录" forState:UIControlStateNormal];
+    NSString *loginButtonText = [m_pUserDefaults boolForKey:LOGIN_STATE]?@"退出登录":@"登  录";
+    [m_pLoginButton setTitle:loginButtonText forState:UIControlStateNormal];
     //button.center = m_pUserView.center;
-    [m_pLoginButton addTarget:self action:@selector(loginAcount) forControlEvents:UIControlEventTouchUpInside];
+    [m_pLoginButton addTarget:self action:@selector(loginOrLogoutAccount) forControlEvents:UIControlEventTouchUpInside];
     [m_pUserView addSubview:m_pLoginButton];
 }
 
@@ -103,24 +116,48 @@
         [((AppDelegate *)([UIApplication sharedApplication].delegate)).m_pNavViewController pushViewController:detailView animated:YES];
 
         detailView.view.backgroundColor = MOON_WHITE;
-    [detailView setPersonalName:[m_pUserDefaults stringForKey:@"name"] Position:[m_pUserDefaults stringForKey:@"position"]Mobile:[m_pUserDefaults stringForKey:PER_MOBILE] TEL:[m_pUserDefaults stringForKey:@"perTel"] Email:@"" CorpName:@"" Andress:@"" FAX:@""];
+//    [detailView setPersonalName:[m_pUserDefaults stringForKey:@"name"] Position:[m_pUserDefaults stringForKey:@"position"]Mobile:[m_pUserDefaults stringForKey:PER_MOBILE] TEL:[m_pUserDefaults stringForKey:@"perTel"] Email:@"" CorpName:@"" Andress:@"" FAX:@""];
+    [self addSingleData:detailView];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [((AppDelegate *)([UIApplication sharedApplication].delegate)).slideViewController hideSideFinish:nil];
             
         });
 }
 
--(void) addSingleData
+-(void) addSingleData:(DetailInfoViewConteroller *)detailView
 {
+    PerClass *person = [[PerClass alloc]init];
+    person->perName = [m_pUserDefaults stringForKey:PER_NAME];
+    person->perMobile = [m_pUserDefaults stringForKey:PER_MOBILE];
+    person->perPosition = [m_pUserDefaults stringForKey:PER_POSITION];
+    person->perIntroduce = [m_pUserDefaults stringForKey:PER_INTRODUCE];
+    person->perTel = [m_pUserDefaults stringForKey:PER_TEL];
+    person->perEmail = [m_pUserDefaults stringForKey:PER_EMAIL];
+    CorClass *cor = [[CorClass alloc]init];
+    cor->corName = [m_pUserDefaults stringForKey:COR_NAME];
+    cor->corAddress = [m_pUserDefaults stringForKey:COR_ADDRESS];
+    cor->corFax = [m_pUserDefaults stringForKey:COR_FAX];
+    cor->corTel = [m_pUserDefaults stringForKey:COR_TEL];
+    cor->corInteroduce = [m_pUserDefaults stringForKey:COR_INTRODUCE];
+    [detailView setPersonDate:person AndCordate:cor];
+}
 
-    
+-(void) loginOrLogoutAccount
+{
+    BOOL loginState = [m_pUserDefaults boolForKey:LOGIN_STATE];
+    if (loginState) {
+        [self logoutAccount];
+    }
+    else{
+        [self loginAcount];
+    }
 }
 
 -(void) loginAcount
 {
     UIAlertView *customAlertView;
     if (customAlertView==nil) {
-        customAlertView = [[UIAlertView alloc] initWithTitle:@"输入密码帐号" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil, nil];
+        customAlertView = [[UIAlertView alloc] initWithTitle:@"登  录" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil, nil];
     }
     [customAlertView setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
     
@@ -135,14 +172,52 @@
     [customAlertView show];
 }
 
+-(void) logoutAccount
+{
+    [m_pUserDefaults setBool:NO forKey:LOGIN_STATE];
+    [m_pLoginButton setTitle:@"登  录" forState:UIControlStateNormal];
+    [m_pUserDefaults setObject:@"" forKey:PER_ACCOUNT];
+    m_pAccountLabel.text = @"";
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录" message:@"退出登录" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 -(void)testServer{
     //[ServerHelper startGETConnection:@"http://www.baidu.com/s?wd=nihao&rsv_spt=1&issp=1&rsv_bp=0&ie=utf-8&tn=baiduhome_pg&rsv_sug3=3&rsv_sug=0&rsv_sug1=3&rsv_sug4=36"];
-    [ServerHelper startGETConnection:@"http://10.12.67.237:8080/MySQL-JSON-Test/Action?EName=Kvitova"];
+    [ServerHelper startGETConnection:@"http://192.168.1.103:8080/MavenJavaWebDemo/myservlet?username=zdw&password=admin"];
+    [ServerHelper setDelegate:self];
+}
+
+#pragma mark -ServerHelperDelegate
+-(void)didReceiveMsg
+{
     NSMutableData *data= [ServerHelper getGetData];
     NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"%@", output);
-    
+    [m_pProgressHUD hide:YES];
+    NSLog(@"收到结果%@", output);
+    if ([output isEqualToString:@"true"]) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录" message:@"登录成功" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        [alert show];
+        [m_pUserDefaults setBool:YES forKey:LOGIN_STATE];
+        [m_pLoginButton setTitle:@"退出登录" forState:UIControlStateNormal];
+        [m_pUserDefaults setObject:m_pAccountText forKey:PER_ACCOUNT];
+        m_pAccountLabel.text = [m_pUserDefaults stringForKey:PER_ACCOUNT];
+    }
+    else if([output isEqualToString:@"false"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录" message:@"登录失败" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录" message:@"网络连接失败" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
 
+-(void) didNotReceiveMsg
+{
+    [m_pProgressHUD hide:YES];
 }
 
 -(void) savaUserData
@@ -164,7 +239,7 @@
     m_pAccountLabel.text = [m_pUserDefaults stringForKey:PER_ACCOUNT];
 }
 
-
+#pragma mark -alertView
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if (buttonIndex == alertView.firstOtherButtonIndex) {
@@ -173,17 +248,22 @@
         //TODO
         NSLog(@"account:%@", accountField.text);
         NSLog(@"password:%@", passwordField.text);
-        [m_pUserDefaults setObject:accountField.text forKey:PER_ACCOUNT];
-        
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录成功" message:@"登录公司账户成功" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-        NSString *sendUrl = [NSString stringWithFormat:@"%@,%@",accountField.text,passwordField.text];
-        [alert show];
+        m_pAccountText = accountField.text;
+        NSString *sendMsg = [NSString stringWithFormat:@"http://192.168.1.100:8080/MavenJavaWebDemo/myservlet?Type=0&username=%@&password=%@",accountField.text, passwordField.text];
+        //@"http://192.168.1.103:8080/MavenJavaWebDemo/myservlet?username=zdw&password=admin"
+        [ServerHelper startGETConnection:sendMsg];
+        [ServerHelper setDelegate:self];
+        [m_pProgressHUD show:YES];
+        [m_pProgressHUD hide:YES afterDelay:10];
+//        [m_pProgressHUD showAnimated:YES whileExecutingBlock:^{
+//            sleep(10);
+//        } completionBlock:^{
+//            [m_pProgressHUD hide:YES];
+//        }];
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录成功" message:@"登录公司账户成功" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+//        NSString *sendUrl = [NSString stringWithFormat:@"%@,%@",accountField.text,passwordField.text];
+//        [alert show];
     }
     
-    
-    
-    
-    
 }
-
 @end

@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@protocol ServerHelperDelegate <NSObject>
+- (void)didReceiveMsg;
+- (void)didNotReceiveMsg;
+@end
+
 @interface ServerHelper : NSObject
 
 +(void)startGETConnection:(NSString *)URL;
@@ -16,4 +21,7 @@
 
 +(void)startPOSTConnection:(NSString *)URL OpsID:(NSInteger) ID;
 +(NSMutableData *)getPostData;
++(void) setDelegate:(id)delegate;
+
+@property (nonatomic, weak) id <ServerHelperDelegate> serverDelegate;
 @end

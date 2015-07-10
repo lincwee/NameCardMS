@@ -26,6 +26,7 @@
         frame.origin.y += 1.0;
         self.menuButton = [[SIMenuButton alloc] initWithFrame:frame];
         self.menuButton.title.text = title;
+        self.nowIndex = 0;
         [self.menuButton addTarget:self action:@selector(onHandleMenuTap:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.menuButton];
     }
@@ -77,6 +78,10 @@
     } completion:NULL];
 }
 
+-(NSInteger) getIndexNow
+{
+    return self.nowIndex;
+}
 #pragma mark -
 #pragma mark Delegate methods
 - (void)didSelectItemAtIndex:(NSUInteger)index
@@ -85,6 +90,7 @@
     [self onHandleMenuTap:nil];
     [self.menuButton.title setText:[NSString stringWithFormat:@"%@", (NSString *)[self.items objectAtIndex:index]]];
     [self.delegate didSelectItemAtIndex:index];
+    self.nowIndex = index;
 }
 
 - (void)didBackgroundTap

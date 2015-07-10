@@ -63,6 +63,7 @@
 		57CEA3E01B09CBCD007940DA /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CEA3D71B09CBCD007940DA /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		57CEA3E41B09CBFC007940DA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CEA3E31B09CBFC007940DA /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		57D6A86C1B1D461800EA8ABA /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D6A86B1B1D461800EA8ABA /* LoginView.m */; };
+		57EC9EE71B21C1A500CE9525 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 57EC9EE61B21C1A500CE9525 /* MBProgressHUD.m */; };
 		57F008D41B05D90100C814C6 /* PerClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F008D31B05D90100C814C6 /* PerClass.m */; };
 		57F008D71B05D91400C814C6 /* CorClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F008D61B05D91400C814C6 /* CorClass.m */; };
 		57F075E91AFDF049006BE99B /* libwssdk_simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F075E61AFDF049006BE99B /* libwssdk_simulator.a */; };
@@ -187,6 +188,8 @@
 		57CEA3E31B09CBFC007940DA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ASIHttpRequest/Reachability.m; sourceTree = "<group>"; };
 		57D6A86A1B1D461800EA8ABA /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		57D6A86B1B1D461800EA8ABA /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		57EC9EE51B21C1A500CE9525 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		57EC9EE61B21C1A500CE9525 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		57F008D21B05D90100C814C6 /* PerClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerClass.h; sourceTree = "<group>"; };
 		57F008D31B05D90100C814C6 /* PerClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerClass.m; sourceTree = "<group>"; };
 		57F008D51B05D91400C814C6 /* CorClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorClass.h; sourceTree = "<group>"; };
@@ -355,6 +358,7 @@
 		577BF8C51AE37DFC00381243 /* UIGroup */ = {
 			isa = PBXGroup;
 			children = (
+				57EC9EE41B21C16600CE9525 /* MBProgressHUD */,
 				57BA73F81B19E293004519FC /* NavigationMenuView */,
 				575CD3E81B11A7F30023206F /* SSSearchBar */,
 				57BE74381AE39CFF00780026 /* SDRefresh */,
@@ -457,6 +461,15 @@
 				57CEA3E31B09CBFC007940DA /* Reachability.m */,
 			);
 			name = Reachability;
+			sourceTree = "<group>";
+		};
+		57EC9EE41B21C16600CE9525 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				57EC9EE51B21C1A500CE9525 /* MBProgressHUD.h */,
+				57EC9EE61B21C1A500CE9525 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		57F075E51AFDEFF8006BE99B /* HavonSDK */ = {
@@ -632,6 +645,7 @@
 				57F522611B04451D003074BA /* SqliteManage.m in Sources */,
 				57F008D41B05D90100C814C6 /* PerClass.m in Sources */,
 				57BE74441AE39D1800780026 /* SDRefreshFooterView.mm in Sources */,
+				57EC9EE71B21C1A500CE9525 /* MBProgressHUD.m in Sources */,
 				57BA740B1B19E2B5004519FC /* SIMenuButton.m in Sources */,
 				577BF8C11AE3738900381243 /* LeftBackSideView.m in Sources */,
 				57CEA3DA1B09CBCD007940DA /* ASIDataCompressor.m in Sources */,

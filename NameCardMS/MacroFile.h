@@ -67,6 +67,7 @@
 #define COR_INTRODUCE @"corIntroduce"
 
 #define PER_ACCOUNT @"account"
+#define LOGIN_STATE @"loginState"  //True代表已登录，False代表未登录
 
 //DetailInfoViewConteroller
 #define DETAIL_BUTTON_TEXT_EDIT @"编辑"

@@ -13,7 +13,9 @@
 #import "SDRefresh.h"
 #import "SqliteManage.h"
 #import "SINavigationMenuView.h"
-@interface ViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, SINavigationMenuDelegate>
+#import "ServerHelper.h"
+#import "MBProgressHUD.h"
+@interface ViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, SINavigationMenuDelegate, ServerHelperDelegate>
 {
     NSMutableArray *m_pDataList;
 }
@@ -34,6 +36,8 @@
 
 @property (strong, nonatomic) SDRefreshFooterView *m_pRefreshFooter;
 @property (strong, nonatomic) SqliteManage *m_pSqlmanager;
+@property (strong, nonatomic)SINavigationMenuView *m_pNaviMenu;
+@property (strong, nonatomic) MBProgressHUD *m_pProgressHUD;
 - (AppDelegate *) RootAppDelegate;
 -(void) initView;
 

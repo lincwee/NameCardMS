@@ -198,7 +198,7 @@
     NSString *str = [sdk cardLanguage:@"chns" cardImage:image apiKey:apiKey];
     NSLog(@"%@",str);
     //NSString *str1 = [sdk cardLanguage:@"chns" imagePath:@"cardimage.jpg" apiKey:apiKey];
-    //NSLog(@"返回的结果是 : %@",str);
+    NSLog(@"返回的结果是 : %@",str);
 
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     NSError *pError;
