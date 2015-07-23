@@ -55,6 +55,9 @@
 
 +(NSMutableData *)getGetData
 {
+    /*
+     *这个地方要是把ServerHelper改变成self是可以的！
+     */
     return [[ServerHelper shareControl] getGetData];
 }
 
