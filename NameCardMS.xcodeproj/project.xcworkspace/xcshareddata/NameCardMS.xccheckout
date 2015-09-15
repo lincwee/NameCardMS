@@ -7,21 +7,21 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>D8D73E58-6953-41D4-837E-ADC207462FB6</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>NameCardMS</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>860297684248EC76ED6032FB6B6B200D66E321F1</key>
-		<string>https://github.com/husthaolinwei/NameCardMS.git</string>
+		<string>https://github.com/lincwee/NameCardMS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>NameCardMS.xcodeproj/project.xcworkspace</string>
+	<string>NameCardMS.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>860297684248EC76ED6032FB6B6B200D66E321F1</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/husthaolinwei/NameCardMS.git</string>
+	<string>https://github.com/lincwee/NameCardMS.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

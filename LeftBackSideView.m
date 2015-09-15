@@ -50,8 +50,7 @@
     [m_pTopView addSubview:pTopLabel];
 
     [self.view addSubview:[self addButtonWithString:@"手动添加" AndFrame:CGRectMake(0.f, LEFT_BACKSIDE_VIEW_BUTTON_TOP1_POSY, LEFT_BACKSIDE_VIEW_WIDTH, LEFT_BACKSIDE_VIEW_BUTTON_HEIGHT)andAction:@selector(addDataBySelf)]];
-    
-    
+
     [self.view addSubview:[self addButtonWithString:@"自动添加" AndFrame:CGRectMake(0.f, LEFT_BACKSIDE_VIEW_BUTTON_TOP1_POSY + LEFT_BACKSIDE_VIEW_BUTTON_BUTTON_OFFSET, LEFT_BACKSIDE_VIEW_WIDTH, LEFT_BACKSIDE_VIEW_BUTTON_HEIGHT)andAction:@selector(chooseImage:)]];
     
 //    [self.view addSubview:[self addButtonWithString:@"" AndFrame:CGRectMake(0.f, LEFT_BACKSIDE_VIEW_BUTTON_TOP1_POSY + LEFT_BACKSIDE_VIEW_BUTTON_BUTTON_OFFSET * 2, LEFT_BACKSIDE_VIEW_WIDTH, LEFT_BACKSIDE_VIEW_BUTTON_HEIGHT)andAction:@selector(null)]];

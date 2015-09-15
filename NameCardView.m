@@ -14,7 +14,7 @@
 {
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(150.f, 200.f, 200.f, 200.f)];
     [label setText:@"this is information view"];
-    [self.view addSubview:label];
+    [self.view addSubview:label];    
 }
 
 @end

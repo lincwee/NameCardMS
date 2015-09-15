@@ -59,7 +59,6 @@
 
 -(BOOL) insertDataToPersonTable:(PerClass *)person
 {
-    
     NSString *insertSql =[NSString stringWithFormat:@"INSERT INTO personTable (PID, CID, Pname, Pmobile, Pposition, Ptel, Pemail, Pintroduce) VALUES ( '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')"
                           , person->PID
                           , person->PID

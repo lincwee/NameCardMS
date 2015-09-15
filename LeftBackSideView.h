@@ -21,4 +21,5 @@
 
 @property (strong, nonatomic) NSData *m_pCardImage;
 
+-(void) setName:(NSString *)name :(NSInteger)age;
 @end

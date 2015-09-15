@@ -127,6 +127,7 @@
 {
     CGRect frame = CGRectMake(0.0, 0.0, 200.0, self.navigationController.navigationBar.bounds.size.height);
     m_pNaviMenu = [[SINavigationMenuView alloc] initWithFrame:frame title:@"本地名片"];
+
     [m_pNaviMenu displayMenuInView:self.view];
     m_pNaviMenu.items = @[@"本地名片", @"云端名片"];
     m_pNaviMenu.delegate = self;
@@ -198,7 +199,7 @@
     }
     NSArray *px = [[NSMutableArray alloc]init];
     px = [jsonData objectForKey:@"CloudData"];
-    NSString *fuck = [NSString stringWithFormat:@"%@", [px objectAtIndex:0]];
+//    NSString *fuck = [NSString stringWithFormat:@"%@", [px objectAtIndex:0]];
     if(px)
     {
         for (int i = 0; i < [px count]; i++) {
